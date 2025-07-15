@@ -10,7 +10,7 @@ authors = [
 ]
 keywords = ["flask", "oauth", "authentication", "microservices", "google", "github"]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
@@ -33,18 +33,14 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = [
-    "pytest>=6.0",
-]
 production = [
     "gunicorn>=21.0.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-username/flop"
-Repository = "https://github.com/your-username/flop"
-Issues = "https://github.com/your-username/flop/issues"
-Changelog = "https://github.com/your-username/flop/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/daiverd/flop"
+Repository = "https://github.com/daiverd/flop"
+Issues = "https://github.com/daiverd/flop/issues"
 
 [build-system]
 requires = ["hatchling"]
@@ -53,8 +49,3 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["flop"]
 
-[tool.pytest.ini_options]
-testpaths = ["test_auth.py"]
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
