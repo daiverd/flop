@@ -146,6 +146,24 @@ class FlaskAuth:
         
         return None
     
+    def _get_callback_url(self, provider):
+        """Generate callback URL with proper HTTPS handling for production"""
+        from flask import request
+        
+        # Generate the base URL
+        callback_url = url_for('auth.callback', provider=provider, _external=True)
+        
+        # Force HTTPS unless running on localhost/127.0.0.1
+        if request.host and not (
+            request.host.startswith('localhost:') or 
+            request.host.startswith('127.0.0.1:') or
+            request.host == 'localhost' or
+            request.host == '127.0.0.1'
+        ):
+            callback_url = callback_url.replace('http://', 'https://')
+        
+        return callback_url
+    
     def _create_auth_blueprint(self):
         """Create the authentication blueprint with routes"""
         auth_bp = Blueprint('auth', __name__)
@@ -160,7 +178,7 @@ class FlaskAuth:
                 return f"Provider {provider} not configured", 400
             
             client = self.providers[provider]
-            redirect_uri = url_for('auth.callback', provider=provider, _external=True)
+            redirect_uri = self._get_callback_url(provider)
             return client.authorize_redirect(redirect_uri)
         
         @auth_bp.route('/callback/<provider>')
