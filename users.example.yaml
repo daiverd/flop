@@ -1,0 +1,36 @@
+# users.yaml - User authorization database
+_metadata:
+  description: User authorization database
+  format: email as key, user data as value
+
+users:
+  john@gmail.com:
+    name: "John Doe"
+    roles: ["user", "admin"]
+    active: true
+    notes: "Lead developer"
+  
+  jane.smith@company.com:
+    name: "Jane Smith"
+    roles: ["user"]
+    active: false
+    notes: "Frontend developer"
+  
+  bob.wilson@company.com:
+    name: "Bob Wilson"
+    roles: ["user", "manager"]
+    active: false
+    notes: "Temporarily disabled"
+  
+  alice@company.com:
+    name: "Alice Johnson"
+    roles: ["user"]
+    active: false
+    notes: null
+
+  # External consultant with limited access
+  consultant@external.com:
+    name: "External Consultant"
+    roles: ["readonly"]
+    active: false
+    notes: "Consultant - expires 2025-12-31"
